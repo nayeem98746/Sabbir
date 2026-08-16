@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* scrollbar design  */
+.scrollbar{
+    --scrollbar_thum_bg: rgb(45, 130, 130);
+    --scrollbar_track_bg: rgb(13, 17, 20);
+    scrollbar-width: thin;
+    scrollbar-color: var(--scrollbar_thum_bg) var(--scrollbar_track_bg);
+}
+
+.scrollbar::-webkit-scrollbar{
+    width: 2px;
+}
+.scrollbar::-webkit-scrollbar-thumb{
+    background-color: rgb(45, 130, 130);
+    border-radius: 5px;
+}
+
+.scrollbar::-webkit-scrollbar-track{
+    background-color: rgb(13, 17, 20);
+}
+
+
+
+/* scrollbar end  */
+
+
+/* card and other common classes  */
+:root{
+    --card-bg: linear-gradient(159deg,#1e2a3a 0,#1a2433 100%);
+}
+.bg_mute{
+    background: var(--card-bg);
+}
+
+/* regular scale animation  START */
+.scale_regular_animation{
+    animation: scale_regular_ani 2s ease-in-out 1 forwards;
+}
+@keyframes scale_regular_ani {
+    0%{
+      transform: scale(0.9);
+    }100%{
+      transform: scale(1);
+    }
+  }
+/* regular scale animation  END */

@@ -1,0 +1,44 @@
+
+/* language circle 1 animation */
+.lang_1{
+    stroke-dasharray: 75;
+    stroke-dashoffset: 0;
+    animation: langAni_1 3s linear forwards;
+}
+
+@keyframes langAni_1 {
+    0%{
+        stroke-dashoffset: 75;
+    }100%{
+        stroke-dashoffset: 0;
+    }
+}
+/* language circle 2 animation */
+.lang_2{
+    stroke-dasharray: 100;
+    stroke-dashoffset: 0;
+    animation: langAni_2 3s linear forwards;
+}
+
+@keyframes langAni_2 {
+    0%{
+        stroke-dashoffset: 100;
+    }100%{
+        stroke-dashoffset: 0;
+    }
+}
+
+/* language circle 3 animation */
+.lang_3{
+    stroke-dasharray: 50;
+    stroke-dashoffset: 0;
+    animation: langAni_3 3s linear forwards;
+}
+
+@keyframes langAni_3 {
+    0%{
+        stroke-dashoffset: 50;
+    }100%{
+        stroke-dashoffset: 0;
+    }
+}
