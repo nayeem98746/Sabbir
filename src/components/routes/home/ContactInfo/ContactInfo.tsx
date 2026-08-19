@@ -14,25 +14,25 @@ const ContactInfo = () => {
                     </div>
                     <div className={'homeST.address_card_info flex justify-between my-2'}>
                         <span>City:</span>
-                        <span className='text-typo_mute'>Narail</span>
+                        <span className='text-typo_mute'>Tangail</span>
                     </div>
                     <div className={'homeST.address_card_info flex justify-between my-2'}>
                         <span>State:</span>
-                        <span className='text-typo_mute'>Khulna</span>
+                        <span className='text-typo_mute'>Dhaka</span>
                     </div>
                 </div>
                 <div className={'homeST.address_card min-w-64 sm:min-w-72  max-w-80 rounded-md p-3 bg_mute'}>
                     <div className={'homeST.address_card_info flex justify-between my-2'}>
                         <span>Email:</span>
-                        <span className='text-typo_mute'>shuvoh38@gmail.com</span>
+                        <span className='text-typo_mute'>sabbir987467@gmail.com</span>
                     </div>
                     <div className={'homeST.address_card_info flex justify-between my-2'}>
                         <span>Phone:</span>
-                        <span className='text-typo_mute'>+880-1927-173843</span>
+                        <span className='text-typo_mute'>+880-1825-987467</span>
                     </div>
                     <div className={'homeST.address_card_info flex justify-between my-2'}>
-                        <span>Skype:</span>
-                        <span className='text-typo_mute'>live:shuvoh38</span>
+                        <span>Teams:</span>
+                        <span className='text-typo_mute'>sabbir987467@gmail.com</span>
                     </div>
                 </div>
             </div>

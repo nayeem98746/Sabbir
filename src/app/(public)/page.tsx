@@ -14,7 +14,7 @@ export default function Home() {
       <Banner />
       <div className="max-w-6xl mx-auto px-4 md:px-8">
         <CountTotalCredit />
-        <div className="flex flex-col gap-20 md:gap-28 pb-28 pt-4">
+        <div className="flex flex-col gap-20 md:gap-15 pb-28 pt-4">
           <Experience />
           <ProjectCards />
           <EducationAndLearn />

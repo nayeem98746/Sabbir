@@ -14,7 +14,7 @@ const couonters = [
 
 const CountTotalCredit = () => {
     return (
-        <section className="grid grid-cols-2 lg:grid-cols-4 gap-6 gap-y-10 rounded-md p-6 md:p-8 bg_mute -mt-10 relative z-20">
+        <section className="grid grid-cols-2 lg:grid-cols-4 gap-6 gap-y-10 rounded-md p-6 md:p-8 bg_mute -mt-10   z-20">
             {
                 couonters.map(counter => <div className={'homeST.countTotal flex flex-col gap-1 justify-center items-center font-normal'} key={counter.title}>
                 <p>
