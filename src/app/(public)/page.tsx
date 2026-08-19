@@ -10,11 +10,11 @@ import ProjectCards from "@/components/routes/home/projects/ProjectCards";
 
 export default function Home() {
   return (
-    <main>
+    <main >
       <Banner />
       <div className="max-w-6xl mx-auto px-4 md:px-8">
         <CountTotalCredit />
-        <div className="flex flex-col gap-20 md:gap-15 pb-28 pt-4">
+        <div className="flex flex-col gap-10 md:gap-15 pb-28 pt-4">
           <Experience />
           <ProjectCards />
           <EducationAndLearn />

@@ -19,11 +19,14 @@ import {
 import DividerProfile from "./DividerProfile";
 import { useSidebar } from "@/contexts/SidebarContext";
 import Icon from "@/components/widget/icons/Icon";
+import { useAuth } from "@/contexts/AuthProvider";
 
-export const CV_DRIVE_URL = {
-  PREVIEW: "https://drive.google.com/file/d/1_Sb9ZaGbiw7uPE3TbVPOKph-1ei24vHr/view",
+
+ export const CV_DRIVE_URL = {
+  PREVIEW: "https://drive.google.com/file/d/1_Sb9ZaGbiw7uPE3TbVPOKph-1ei24vHr/preview",
+  VIEW: "https://drive.google.com/file/d/1_Sb9ZaGbiw7uPE3TbVPOKph-1ei24vHr/view",
   DOWNLOAD: "https://drive.google.com/uc?id=1_Sb9ZaGbiw7uPE3TbVPOKph-1ei24vHr&export=download"
-};
+ };
 
 const socials = [
   {
@@ -92,6 +95,8 @@ const knowledges = [
 const Profile = () => {
   const { isSidebarOpen, toggleSidebar } = useSidebar();
   const [isMounted, setIsMounted] = useState(false);
+    const { isResumeOpen, setIsResumeOpen } = useAuth()
+  
 
   useEffect(() => {
     setIsMounted(true);
@@ -137,7 +142,7 @@ const Profile = () => {
   const toggleClass = isSidebarOpen ? 'w-profile_bar_md' : 'w-profile_bar_sm';
 
   return (
-    <div
+    <div onClick={() => setIsResumeOpen(!isResumeOpen)}
       className={`fixed h-screen ${isSidebarOpen ? 'w-profile_bar_md' : "w-profile_bar_sm"} md:w-profile_bar_md lg:w-profile_bar md:block transition-all duration-500 ease-in-out overflow-hidden bg-gray-800 z-20`}
     >
       <button

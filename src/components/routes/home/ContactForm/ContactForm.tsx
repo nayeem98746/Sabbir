@@ -11,8 +11,7 @@ export const ContactForm = () => {
 
     const sendEmail = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        
-        // Check if environment variables are set
+
         const serviceId = process.env.NEXT_PUBLIC_SERVICE_ID;
         const templateId = process.env.NEXT_PUBLIC_TEMPLATE_ID;
         const publicKey = process.env.NEXT_PUBLIC_PUBLIC_KEY;
@@ -28,9 +27,9 @@ export const ContactForm = () => {
             setEmailErr("");
 
             emailjs.sendForm(
-                serviceId, 
-                templateId, 
-                form.current, 
+                serviceId,
+                templateId,
+                form.current,
                 publicKey
             )
             .then((result) => {
@@ -39,7 +38,6 @@ export const ContactForm = () => {
                     if (form.current) {
                         form.current.reset();
                     }
-                    // Auto-hide success message after 5 seconds
                     setTimeout(() => {
                         setEmailSucceed(false);
                     }, 5000);
@@ -49,7 +47,6 @@ export const ContactForm = () => {
                 console.error("EmailJS Error:", error);
                 setIsEmailLoading(false);
                 setEmailErr(error.text || "Failed to send message. Please try again.");
-                // Auto-hide error message after 5 seconds
                 setTimeout(() => {
                     setEmailErr("");
                 }, 5000);
@@ -62,86 +59,81 @@ export const ContactForm = () => {
             <h3 className="text-2xl md:text-3xl font-bold text-white mb-10 inline-block relative pb-3 after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-12 after:h-1 after:bg-teal-400 after:rounded-full">
                 Get in Touch
             </h3>
-            
-            <div className="bg-gradient-to-br from-[#1a1a26] to-[#0d0d14] p-6 md:p-8 rounded-lg shadow-xl">
-                <form ref={form} onSubmit={sendEmail} className="space-y-4">
-                    {/* Subject Field */}
-                    <div className="flex rounded-md overflow-hidden shadow-md">
-                        <span className="flex justify-center items-center bg-[#20202a] w-12 min-h-[48px]">
-                            {getTIcon(20, 20, '#94a3b8')}
-                        </span>
-                        <input
-                            className="flex-1 outline-none h-12 px-4 text-white text-base placeholder:text-gray-400"
-                            style={{ background: "linear-gradient(159deg, #252532 0%, #23232d 100%)" }}
+
+            <div className="relative bg-[#0f0f16]/80 backdrop-blur-xl border border-white/5 p-6 md:p-10 rounded-2xl shadow-2xl overflow-hidden">
+                {/* soft ambient glow accents */}
+                <div className="pointer-events-none absolute -top-24 -right-24 w-64 h-64 bg-teal-400/10 rounded-full blur-3xl" />
+                <div className="pointer-events-none absolute -bottom-24 -left-24 w-64 h-64 bg-teal-400/5 rounded-full blur-3xl" />
+
+                <form ref={form} onSubmit={sendEmail} className="relative space-y-5">
+                    <div className="grid md:grid-cols-2 gap-2">
+                        {/* Subject Field */}
+                        <FloatingField
+                            icon={getTIcon(18, 18, 'currentColor')}
                             type="text"
                             name="from_subject"
-                            placeholder="Subject"
-                            required
+                            label="Subject"
                         />
-                    </div>
 
-                    {/* Full Name Field */}
-                    <div className="flex rounded-md overflow-hidden shadow-md">
-                        <span className="flex justify-center items-center bg-[#20202a] w-12 min-h-[48px]">
-                            {getUserIcon(20, 20, '#94a3b8')}
-                        </span>
-                        <input
-                            className="flex-1 outline-none h-12 px-4 text-white text-base placeholder:text-gray-400"
-                            style={{ background: "linear-gradient(159deg, #252532 0%, #23232d 100%)" }}
+                        {/* Full Name Field */}
+                        <FloatingField
+                            icon={getUserIcon(18, 18, 'currentColor')}
                             type="text"
                             name="from_name"
-                            placeholder="Full Name"
-                            required
+                            label="Full Name"
                         />
                     </div>
 
                     {/* Email Field */}
-                    <div className="flex rounded-md overflow-hidden shadow-md">
-                        <span className="flex justify-center items-center bg-[#20202a] w-12 min-h-[48px]">
-                            {getAtIcon(20, 20, '#94a3b8')}
-                        </span>
-                        <input
-                            className="flex-1 outline-none h-12 px-4 text-white text-base placeholder:text-gray-400"
-                            style={{ background: "linear-gradient(159deg, #252532 0%, #23232d 100%)" }}
-                            type="email"
-                            name="user_email"
-                            placeholder="example@email.com"
-                            required
-                        />
-                    </div>
+                    <FloatingField
+                        icon={getAtIcon(18, 18, 'currentColor')}
+                        type="email"
+                        name="user_email"
+                        label="Email Address"
+                    />
 
                     {/* Message Field */}
-                    <div className="flex rounded-md overflow-hidden shadow-md">
-                        <span className="flex justify-start items-start pt-4 bg-[#20202a] w-12 min-h-[48px]">
-                            {getEmailIcon(20, 20, '#94a3b8')}
+                    <div className="group relative">
+                        <span className="absolute left-4 top-4 text-gray-500 group-focus-within:text-teal-400 transition-colors duration-200">
+                            {getEmailIcon(18, 18, 'currentColor')}
                         </span>
                         <textarea
-                            className="flex-1 outline-none w-full px-4 py-3 text-white text-sm placeholder:text-gray-400 min-h-[180px] md:min-h-[200px] resize-y scrollbar-thin scrollbar-thumb-teal-400 scrollbar-track-gray-700"
-                            style={{ background: "linear-gradient(159deg, #252532 0%, #23232d 100%)" }}
+                            id="message"
                             name="message"
-                            placeholder="Write your message here..."
                             required
+                            placeholder=" "
+                            className="peer w-full min-h-[160px] md:min-h-[190px] resize-y rounded-xl bg-white/[0.03] border border-white/10 pl-12 pr-4 pt-4 pb-2 text-sm text-white outline-none transition-all duration-200 placeholder-transparent focus:border-teal-400/60 focus:bg-white/[0.05] focus:ring-2 focus:ring-teal-400/10 scrollbar-thin scrollbar-thumb-teal-400/40 scrollbar-track-transparent"
                         />
+                        <label
+                            htmlFor="message"
+                            className="pointer-events-none absolute left-12 top-4 text-sm text-gray-500 transition-all duration-200
+                                peer-focus:-top-2.5 peer-focus:left-3 peer-focus:text-xs peer-focus:text-teal-400 peer-focus:bg-[#0f0f16] peer-focus:px-1.5
+                                peer-[:not(:placeholder-shown)]:-top-2.5 peer-[:not(:placeholder-shown)]:left-3 peer-[:not(:placeholder-shown)]:text-xs peer-[:not(:placeholder-shown)]:bg-[#0f0f16] peer-[:not(:placeholder-shown)]:px-1.5 peer-[:not(:placeholder-shown)]:text-gray-400"
+                        >
+                            Write your message here...
+                        </label>
                     </div>
 
                     {/* Status Messages */}
-                    <div className="min-h-[22px]">
+                    <div className="min-h-[24px]">
                         {emailSucceed && (
-                            <p className="text-green-400 font-medium animate-pulse">
-                                ✅ Message sent successfully!
+                            <p className="flex items-center gap-2 text-sm text-emerald-400 font-medium animate-in fade-in slide-in-from-top-1 duration-300">
+                                <span className="inline-block w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                                Message sent successfully!
                             </p>
                         )}
                         {emailErr && (
-                            <p className="text-red-400 font-medium">
-                                ❌ {emailErr}
+                            <p className="flex items-center gap-2 text-sm text-red-400 font-medium animate-in fade-in slide-in-from-top-1 duration-300">
+                                <span className="inline-block w-1.5 h-1.5 rounded-full bg-red-400" />
+                                {emailErr}
                             </p>
                         )}
                     </div>
 
                     {/* Submit Button */}
-                    <div className="mt-6">
+                    <div className="pt-2">
                         {isEmailLoading ? (
-                            <div className="flex items-center space-x-3 px-2">
+                            <div className="flex items-center gap-3 px-2">
                                 <div className="flex space-x-1">
                                     <div className="w-2 h-2 bg-teal-400 rounded-full animate-bounce [animation-delay:-0.3s]"></div>
                                     <div className="w-2 h-2 bg-teal-400 rounded-full animate-bounce [animation-delay:-0.15s]"></div>
@@ -150,17 +142,54 @@ export const ContactForm = () => {
                                 <span className="text-gray-400 text-sm">Sending message...</span>
                             </div>
                         ) : (
-                            <button 
-                                className="px-8 py-2.5 bg-teal-400 text-black font-bold uppercase tracking-wider rounded-md hover:bg-teal-300 hover:scale-105 transition-all duration-300 ease-in-out shadow-lg hover:shadow-teal-400/25"
+                            <button
+                                className="group relative px-8 py-3 bg-teal-400 text-black font-bold text-sm uppercase tracking-wider rounded-lg overflow-hidden transition-all duration-300 ease-out hover:scale-[1.03] hover:shadow-lg hover:shadow-teal-400/30 active:scale-[0.98]"
                                 type="submit"
                             >
-                                Send Message
+                                <span className="relative z-10">Send Message</span>
+                                <span className="absolute inset-0 bg-white/20 -translate-x-full group-hover:translate-x-0 transition-transform duration-500 ease-out" />
                             </button>
                         )}
                     </div>
                 </form>
             </div>
         </section>
+    );
+};
+
+ const FloatingField = ({
+    icon,
+    type,
+    name,
+    label,
+}: {
+    icon: React.ReactNode;
+    type: string;
+    name: string;
+    label: string;
+}) => {
+    return (
+        <div className="group relative">
+            <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 group-focus-within:text-teal-400 transition-colors duration-200">
+                {icon}
+            </span>
+            <input
+                id={name}
+                type={type}
+                name={name}
+                required
+                placeholder=" "
+                className="peer w-full h-14 rounded-xl bg-white/[0.03] border border-white/10 pl-12 pr-4 text-sm text-white outline-none transition-all duration-200 placeholder-transparent focus:border-teal-400/60 focus:bg-white/[0.05] focus:ring-2 focus:ring-teal-400/10"
+            />
+            <label
+                htmlFor={name}
+                className="pointer-events-none absolute left-12 top-1/2 -translate-y-1/2 text-sm text-gray-500 transition-all duration-200
+                    peer-focus:-top-0 peer-focus:left-3 peer-focus:text-xs peer-focus:text-teal-400 peer-focus:bg-[#0f0f16] peer-focus:px-1.5
+                    peer-[:not(:placeholder-shown)]:-top-0 peer-[:not(:placeholder-shown)]:left-3 peer-[:not(:placeholder-shown)]:text-xs peer-[:not(:placeholder-shown)]:bg-[#0f0f16] peer-[:not(:placeholder-shown)]:px-1.5 peer-[:not(:placeholder-shown)]:text-gray-400"
+            >
+                {label}
+            </label>
+        </div>
     );
 };
 
