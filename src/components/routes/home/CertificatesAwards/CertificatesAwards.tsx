@@ -33,8 +33,6 @@ const certificates: Certificate[] = [
         tech_learn: ["Strategist's Guide to Getting a Job"],
         ref: "https://drive.google.com/file/d/1yY73IFnnClD-dO3USgL1ZJ6JTNVhk7SU/view?usp=sharing"
     },
-    
-    
 ];
 
 const CertificatesAwards = () => {
@@ -49,10 +47,10 @@ const CertificatesAwards = () => {
 
             {/* Grid layout: 2 columns, 2 rows (4 items total) */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {displayedCertificates.map((certificate) => (
+                {displayedCertificates.map((certificate, index) => (
                     <div
                         className="bg_mute p-4 rounded-sm min-h-64 scale_regular_animation"
-                        key={certificate.course_name}
+                        key={`${certificate.course_name}-${index}`}
                     >
                         <div className="relative h-48 md:h-56 lg:h-64 opacity-80">
                             <Image 

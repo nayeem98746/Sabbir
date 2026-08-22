@@ -65,7 +65,7 @@ export default function Education() {
   };
 
   return (
-    <section className="relative min-h-screen overflow-hidden px-6 py-0 text-[#e6e9f0] bg-primary">
+    <section className="relative   overflow-hidden px-6 py-0 text-[#e6e9f0] bg-primary">
       {/* Ambient background glows */}
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute left-[15%] top-[20%] h-[420px] w-[420px] rounded-full bg-blue-400/20 blur-[120px]" />
@@ -80,13 +80,13 @@ export default function Education() {
 
 
         <div className="relative">
-          {/* Vertical timeline line */}
-          <div className="absolute left-[23px] top-3 bottom-3 w-px bg-gradient-to-b from-blue-300/50 via-purple-400/40 to-transparent" />
+          {/* Vertical timeline line - hidden on mobile */}
+          <div className="hidden md:block absolute left-[23px] top-3 bottom-3 w-px bg-gradient-to-b from-blue-300/50 via-purple-400/40 to-transparent" />
 
           {education.map((entry, index) => (
-            <div key={`${entry.institution}-${index}`} className="relative mb-8 pl-16">
-              {/* Timeline dot */}
-              <span className={`absolute left-[14px] top-7 z-10 h-[18px] w-[18px] rounded-full border-2 ${index === 0
+            <div key={`${entry.institution}-${index}`} className="relative mb-8 pl-0 md:pl-16">
+              {/* Timeline dot - hidden on mobile */}
+              <span className={`hidden md:block absolute left-[14px] top-7 z-10 h-[18px] w-[18px] rounded-full border-2 ${index === 0
                   ? 'border-blue-300 bg-blue-400/50 shadow-[0_0_0_4px_rgba(59,130,246,0.2),0_0_18px_rgba(59,130,246,0.55)]'
                   : 'border-blue-300 bg-[#0a0e17]/90 shadow-[0_0_0_4px_rgba(59,130,246,0.12),0_0_18px_rgba(59,130,246,0.55)]'
                 }`} />

@@ -78,13 +78,13 @@ export default function WorkExperience() {
                 </h1>
 
                 <div className="relative">
-                    {/* Vertical timeline line */}
-                    <div className="absolute left-[23px] top-3 bottom-3 w-px bg-gradient-to-b from-teal-300/50 via-indigo-400/40 to-transparent" />
+                    {/* Vertical timeline line - hidden on mobile */}
+                    <div className="hidden md:block absolute left-[23px] top-3 bottom-3 w-px bg-gradient-to-b from-teal-300/50 via-indigo-400/40 to-transparent" />
 
                     {experience.map((entry, index) => (
-                        <div key={`${entry.company}-${index}`} className="relative mb-8 pl-16">
-                            {/* Timeline dot */}
-                            <span className="absolute left-[14px] top-7 z-10 h-[18px] w-[18px] rounded-full border-2 border-teal-300 bg-[#0a0e17]/90 shadow-[0_0_0_4px_rgba(94,234,212,0.12),0_0_18px_rgba(94,234,212,0.55)]" />
+                        <div key={`${entry.company}-${index}`} className="relative mb-8 pl-0 md:pl-16">
+                            {/* Timeline dot - hidden on mobile */}
+                            <span className="hidden md:block absolute left-[14px] top-7 z-10 h-[18px] w-[18px] rounded-full border-2 border-teal-300 bg-[#0a0e17]/90 shadow-[0_0_0_4px_rgba(94,234,212,0.12),0_0_18px_rgba(94,234,212,0.55)]" />
 
                             {/* Glass card */}
                             <div className="group relative overflow-hidden rounded-[20px] border border-white/10 bg-white/[0.045] p-7 backdrop-blur-xl backdrop-saturate-150 shadow-[0_8px_32px_rgba(0,0,0,0.35),inset_0_1px_0_rgba(255,255,255,0.08)] transition-all duration-300 hover:-translate-y-0.5 hover:border-teal-300/30">
